@@ -13,170 +13,151 @@ import clinique.Clinique;
 import utilitaire.UtilitaireFichier;
 
 /**
- * Classe qui montre le cadre principal de l'application de 
- * clinique médicale.
- * 
- * Dans le cadre du cours inf111, travail pratique numéro 3
- * (voir énoncé INF111 A17 tp3 partie 2 fourni).
- * 
- * @author Pierre Bélisle
+ * Classe qui montre le cadre principal de l'application de clinique mï¿½dicale.
+ *
+ * Dans le cadre du cours inf111, travail pratique numï¿½ro 3 (voir ï¿½noncï¿½ INF111
+ * A17 tp3 partie 2 fourni).
+ *
+ * @author Pierre Bï¿½lisle
  * @version Copyright A2017
  */
-public class CadreClinique extends JFrame implements Runnable{
+public class CadreClinique extends JFrame implements Runnable {
 
-	/**
-	 * CONSTANTES 
-	 */
-	// La taille du cadre a été choisie arbitrairement.
-	public static final int LARGEUR = 1000;
-	public static final int HAUTEUR = 400;
+    /**
+     * CONSTANTES
+     */
+    // La taille du cadre a ï¿½tï¿½ choisie arbitrairement.
+    public static final int LARGEUR = 1000;
+    public static final int HAUTEUR = 400;
 
-	// Pour fixer la taille, il faut une instance de la classe Dimension.
-	public static final Dimension TAILLE_CADRE = 
-															new Dimension(LARGEUR,HAUTEUR);
+    // Pour fixer la taille, il faut une instance de la classe Dimension.
+    public static final Dimension TAILLE_CADRE
+            = new Dimension(LARGEUR, HAUTEUR);
 
-	// Pour centrer le cadre, on obtient la taille de l'écran par le Toolkit.
-	public static final Dimension TAILLE_ECRAN = 
-															Toolkit.getDefaultToolkit().getScreenSize();	
+    // Pour centrer le cadre, on obtient la taille de l'ï¿½cran par le Toolkit.
+    public static final Dimension TAILLE_ECRAN
+            = Toolkit.getDefaultToolkit().getScreenSize();
 
-	// La taille du cadre pour la gestion des participants.
-	public static final int LARGEUR_CADRE_GESTION = 500;
-	public static final int HAUTEUR_CADRE_GESTION = 400;
+    // La taille du cadre pour la gestion des participants.
+    public static final int LARGEUR_CADRE_GESTION = 500;
+    public static final int HAUTEUR_CADRE_GESTION = 400;
 
-	// Le centre à partir de la taille du cadre.
-	public final int CENTRE_X = 
-			(TAILLE_ECRAN.width - LARGEUR_CADRE_GESTION) / 2;
-	
-	public final int CENTRE_Y = 
-			(TAILLE_ECRAN.height -HAUTEUR_CADRE_GESTION) / 2;
-	
-	// On calcule la position au centre.
-	private final Point POINT = new Point(CENTRE_X, CENTRE_Y);
-	
-	private final Dimension DIMENSION_CADRE = 
-			new Dimension(LARGEUR_CADRE_GESTION, 
-									HAUTEUR_CADRE_GESTION);
+    // Le centre ï¿½ partir de la taille du cadre.
+    public final int CENTRE_X
+            = (TAILLE_ECRAN.width - LARGEUR_CADRE_GESTION) / 2;
+
+    public final int CENTRE_Y
+            = (TAILLE_ECRAN.height - HAUTEUR_CADRE_GESTION) / 2;
+
+    // On calcule la position au centre.
+    private final Point POINT = new Point(CENTRE_X, CENTRE_Y);
+
+    private final Dimension DIMENSION_CADRE
+            = new Dimension(LARGEUR_CADRE_GESTION,
+                    HAUTEUR_CADRE_GESTION);
 
 	// La seule clinique de rendez-vous de l'application 
-	// sera instanciée au constructeur.
-	private Clinique clinique;
-	
-	
+    // sera instanciï¿½e au constructeur.
+    private Clinique clinique;
 
-	/**
-	 *	On tente d'obtenir le fichier clinique par défaut (Clinique.NOM_FIC).
-	 *  S'il n'existe pas, on instancie une clinique neuve.   
-	 *  
-	 *  Pour l'instant, il n'y a qu'une seule clinique dans tout le projet. 
-	 */
-	public CadreClinique(){
-		
-		try{
-			
-			File fic = new File(Clinique.NOM_FIC);
-			
-			clinique = 
-					UtilitaireFichier.obtenirClinique(
-							new FileInputStream (fic));
-		}
-		catch(Exception e){
-			clinique = new Clinique();
-		}
-	}
-	
-	/**
-	 * Initialise les composants, et la configuration
-	 * de base du cadre au monent décidé par Thread.start().
-	 */
-	public void run(){
+    /**
+     * On tente d'obtenir le fichier clinique par dï¿½faut (Clinique.NOM_FIC).
+     * S'il n'existe pas, on instancie une clinique neuve.
+     *
+     * Pour l'instant, il n'y a qu'une seule clinique dans tout le projet.
+     */
+    public CadreClinique() {
 
-		// On obtient le panneau du JFrame.
-		JPanel panneau = (JPanel) getContentPane();
-		
-		// Dimension plein écran du  CadreClinique (this).
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+        try {
 
-		// On ferme sur X.
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            File fic = new File(Clinique.NOM_FIC);
 
-		// On ajoute le panneau pour les date.
-		PanneauSelecteurDate panneauSelecteurDate = 
-				new PanneauSelecteurDate("Rendez-vous clinique", clinique);
+            clinique
+                    = UtilitaireFichier.obtenirClinique(
+                            new FileInputStream(fic));
+        } catch (Exception e) {
+            clinique = new Clinique();
+        }
+    }
 
-		// Le menu que les étudiants doivent écrire.
-		MonMenuBar menuBar = new MonMenuBar(this);
-		setJMenuBar(menuBar);
-		
-		// La grille qui présente le calendrier (dateChooser).
-		panneau.add(panneauSelecteurDate);
-		
-		//On montre la fenêtre
-		setVisible(true);		
-	}
+    /**
+     * Initialise les composants, et la configuration de base du cadre au monent
+     * dï¿½cidï¿½ par Thread.start().
+     */
+    public void run() {
 
-	/**
-	 * Permet de démarrer la fenêtre de dialogue pour la
-	 * gestion des docteurs.
-	 */
-	public void gererDocteur() {
+        // On obtient le panneau du JFrame.
+        JPanel panneau = (JPanel) getContentPane();
 
-		
-				// Les paramètres sont sur plusieurs lignes. 
-				new CadreGestionParticipant(clinique,
-				
-								// Le panneau qui saisit les infos d'un docteur.
-								new PanneauSaisieDocteur(clinique.getDepartements()),
-						
-								// La liste des docteurs.
-								clinique.getDocteurs(),
-								
-				                // La position et la dimension.
-								POINT,
-								DIMENSION_CADRE);
-				
-		
-	}
-	
-	/**
-	 * Permet de démarrer la fenêtre de dialogue pour la
-	 * gestion des informiers.
-	 */
-	public void gererInfirmier() {
-				
-				// Les paramètres sont sur plusieurs lignes. 
-				new CadreGestionParticipant(clinique,
-				
-						// Le panneau qui saisit les infos d'un infirmier.
-						new PanneauSaisieInfirmier(),
-						
-						// La liste des infirmiers.
-						clinique.getInfirmiers(),
-						
-		                // La position et la dimension.
-						POINT,
-						DIMENSION_CADRE);
-						
-		
-	}
-	
-	/**
-	 * Permet de démarrer la fenêtre de dialogue pour la
-	 * gestion des patients.
-	 */
-	public void gererPatient() {
+        // Dimension plein ï¿½cran du  CadreClinique (this).
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-				// Les paramètres sont sur plusieurs lignes. 
-				new CadreGestionParticipant(clinique,
-						
-					    // Le panneau qui saisit les infos d'un patient.
-						new PanneauSaisiePatient(), 
-		
-						// La liste de patients.
-						clinique.getPatients(),
-						
-		                // La position et la dimension.
-						POINT,
-						DIMENSION_CADRE);
-				
-	}
+        // On ferme sur X.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // On ajoute le panneau pour les date.
+        PanneauSelecteurDate panneauSelecteurDate
+                = new PanneauSelecteurDate("Rendez-vous clinique", clinique);
+
+        // Le menu que les ï¿½tudiants doivent ï¿½crire.
+        MonMenuBar menuBar = new MonMenuBar(this);
+        setJMenuBar(menuBar);
+
+        // La grille qui prï¿½sente le calendrier (dateChooser).
+        panneau.add(panneauSelecteurDate);
+
+        //On montre la fenï¿½tre
+        setVisible(true);
+    }
+
+    /**
+     * Permet de dï¿½marrer la fenï¿½tre de dialogue pour la gestion des docteurs.
+     */
+    public void gererDocteur() {
+
+        // Les paramï¿½tres sont sur plusieurs lignes. 
+        new CadreGestionParticipant(clinique,
+                // Le panneau qui saisit les infos d'un docteur.
+                new PanneauSaisieDocteur(clinique.getDepartements()),
+                // La liste des docteurs.
+                clinique.getDocteurs(),
+                // La position et la dimension.
+                POINT,
+                DIMENSION_CADRE);
+
+    }
+
+    /**
+     * Permet de dï¿½marrer la fenï¿½tre de dialogue pour la gestion des informiers.
+     */
+    public void gererInfirmier() {
+
+        // Les paramï¿½tres sont sur plusieurs lignes. 
+        new CadreGestionParticipant(clinique,
+                // Le panneau qui saisit les infos d'un infirmier.
+                new PanneauSaisieInfirmier(),
+                // La liste des infirmiers.
+                clinique.getInfirmiers(),
+                // La position et la dimension.
+                POINT,
+                DIMENSION_CADRE);
+
+    }
+
+    /**
+     * Permet de dï¿½marrer la fenï¿½tre de dialogue pour la gestion des patients.
+     */
+    public void gererPatient() {
+
+        // Les paramï¿½tres sont sur plusieurs lignes. 
+        new CadreGestionParticipant(clinique,
+                // Le panneau qui saisit les infos d'un patient.
+                new PanneauSaisiePatient(),
+                // La liste de patients.
+                clinique.getPatients(),
+                // La position et la dimension.
+                POINT,
+                DIMENSION_CADRE);
+
+    }
 }
