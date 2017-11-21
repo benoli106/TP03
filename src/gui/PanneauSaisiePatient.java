@@ -1,20 +1,37 @@
 package gui;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
- * ¿ vous de commenter
+ * Le panneau pour la saisie des informations du client et h√©rite de la classe
+ * PanneauSaisieParticipant va contenir le saisi du NAS de plus
  * 
- * @author
+ * @Long Tran & Benjamin Fontaine
  * @version
  *
  */
 public class PanneauSaisiePatient extends PanneauSaisieParticipant {
 
     private static final long serialVersionUID = 1L;
+    
+    // Attributs
+    // Le panneau pour le NAS
+    private JPanel panelNAS;
+    
+    // Le textfield pour le NAS
+    private JTextField textFieldNAS;
+    
 
     /**
-     * ¿ vous de commenter
+     * Constructeur qui permet d'instancier le panneau et
+     * le textfield & label et de l'ajouter a celui ci
      * 
      */
     public PanneauSaisiePatient() {
+        super();
+        panelNAS = new JPanel();
+        
 
     }
 
