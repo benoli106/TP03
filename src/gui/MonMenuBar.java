@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
@@ -16,7 +17,6 @@ public class MonMenuBar extends JMenuBar {
 
     CadreClinique cadreClinique;
     
-
     /**
      * � vous de commenter
      *
@@ -28,32 +28,40 @@ public class MonMenuBar extends JMenuBar {
 
     //On créer le menu déroulant et ses compostantes avec les actionlisteners      
     public void init() {
-        JMenuItem docteurButton = new JMenuItem("Docteur");
-        docteurButton.addActionListener(new ActionListener() {
+        JMenu menuPrincipal = new JMenu("Gestion");
+        
+        JMenuItem docteurItem = new JMenuItem("Docteur");
+        docteurItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cadreClinique.gererDocteur();
             }
         });
-
-        JMenuItem infirmierButton = new JMenuItem("Infirmier");
-        infirmierButton.addActionListener(new ActionListener() {
+        menuPrincipal.add(docteurItem);
+        
+        JMenuItem infirmierItem = new JMenuItem("Infirmier");
+        infirmierItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cadreClinique.gererInfirmier();
             }
         });
+        menuPrincipal.add(infirmierItem);
 
-        JMenuItem patientButton = new JMenuItem("Patient");
-        patientButton.addActionListener(new ActionListener() {
+        JMenuItem patientItem = new JMenuItem("Patient");
+        patientItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cadreClinique.gererPatient();
             }
         });
+        menuPrincipal.add(patientItem);
 
-        JMenuItem quitterButton = new JMenuItem("Quitter");
-        quitterButton.addActionListener(new ActionListener() {
+        JMenuItem quitterItem = new JMenuItem("Quitter");
+        quitterItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
+        menuPrincipal.add(quitterItem);
+        this.add(menuPrincipal);
+       
     }
 }
