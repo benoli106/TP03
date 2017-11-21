@@ -103,6 +103,7 @@ public class CadreClinique extends JFrame implements Runnable {
         MonMenuBar menuBar = new MonMenuBar(this);
         setJMenuBar(menuBar);
 
+        
         // La grille qui pr�sente le calendrier (dateChooser).
         panneau.add(panneauSelecteurDate);
 
