@@ -35,7 +35,7 @@ public class PanneauSaisieParticipant extends JPanel
     // Panneau pour le prénom
     private JPanel panelPrenom;
     private JTextField textFieldPrenom;
-
+    
     /**
      * Constructeur par défaut qui initialise le panneau pour la saisie de
      * participant (le prénom et le nom) un jlabel & jtextfield pour chaque
@@ -50,10 +50,12 @@ public class PanneauSaisieParticipant extends JPanel
         // Les saisies du nom
         JLabel labelNom = new JLabel("Nom : ");
         textFieldNom = new JTextField();
+        textFieldNom.setPreferredSize(new Dimension(200, 50));
 
         // Les saisies du prénom
         JLabel labelPrenom = new JLabel("Prénom : ");
         textFieldPrenom = new JTextField();
+        textFieldPrenom.setPreferredSize(new Dimension(200, 50));
 
         // Ajouter le label & textfield du nom dans un panneau 
         // Le panneau pour le nom
@@ -68,10 +70,10 @@ public class PanneauSaisieParticipant extends JPanel
         panelPrenom.add(textFieldPrenom);
 
         // Ajouter les 2 panneaux du nom & prénom dans le panneau principal
+        
         this.add(panelNom);
         this.add(panelPrenom);
 
-        this.setVisible(true);
     }
 
     // Retourne un nouvel objet d'identification contenant le nom et prénom
