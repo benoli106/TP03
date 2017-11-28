@@ -104,7 +104,8 @@ public class CadreGestionParticipant extends JDialog {
         panneauBas.setLayout(new CardLayout());
 
         //On initialise le panneauPrincipal;
-        this.panneauPrincipal = (JPanel) this.getContentPane();
+        this.panneauPrincipal = new JPanel();
+        this.setContentPane(panneauPrincipal);
 
         this.panneauPrincipal.add(this.interfaceSaisie);
 
@@ -126,6 +127,7 @@ public class CadreGestionParticipant extends JDialog {
         }
 
         this.panneauPrincipal.setVisible(true);
+      
 
         UtilitaireSwing.setDimension(this, dimension);
         this.setLocation(this.position.x, this.position.y);

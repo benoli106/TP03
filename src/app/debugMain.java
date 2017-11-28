@@ -7,7 +7,10 @@
 package app;
 
 import clinique.Clinique;
+import static com.sun.javafx.print.Units.POINT;
 import gui.CadreClinique;
+import gui.CadreGestionParticipant;
+import gui.PanneauSaisieDocteur;
 import gui.PanneauSaisieParticipant;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,12 +29,12 @@ public class debugMain {
     	//Thread t = new Thread(new CadreClinique());
     	//t.start();
         
-        CadreClinique test = new CadreClinique();
-        // On obtient le panneau du JFrame.
-        JPanel panneau = new PanneauSaisieParticipant();
+        CadreClinique clinique = new CadreClinique();
+        Clinique clinique2 = new Clinique();
+
         JFrame jf = new JFrame();
-        
-        jf.setContentPane(panneau);
+        JPanel s = new JPanel();
+        jf.setContentPane(s);
 
         // Dimension plein �cran du  CadreClinique (this).
         jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
