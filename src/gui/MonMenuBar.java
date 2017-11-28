@@ -7,20 +7,21 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
- * � vous de commenter
+ * Menu bar qui sera utiliser par le cadre clinique pour sélectionner un menu
+ * de gestion a afficher. Utilise des menu item pour se remplir et génère un
+ * evenement quand un d'eux est cliquer.
  *
- * @author
+ * @Long Tran & Benjamin Fontaine
  * @version
  *
  */
 public class MonMenuBar extends JMenuBar {
 
+    //Garde un objet cadreClinique en mémoire pour pouvoir faire appel aux 
+    //évènements
     CadreClinique cadreClinique;
     
-    /**
-     * � vous de commenter
-     *
-     */
+    //Initialise le cadre clinique et appel la méthode d'initialisation.
     public MonMenuBar(CadreClinique cadreClinique) {
         this.cadreClinique = cadreClinique;
         init();
@@ -30,6 +31,9 @@ public class MonMenuBar extends JMenuBar {
     public void init() {
         JMenu menuPrincipal = new JMenu("Gestion");
         
+        //On créer un JMenuItem pour chaque options et on y ajoute
+        //un actionListener vers la méthode qui gère l'évenement. Puis on ajoute
+        //le menu item au menu principal
         JMenuItem docteurItem = new JMenuItem("Docteur");
         docteurItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +65,8 @@ public class MonMenuBar extends JMenuBar {
             }
         });
         menuPrincipal.add(quitterItem);
+        
+        //on termine en ajoutant le menu principal au parent, le menuBar
         this.add(menuPrincipal);
         
        
