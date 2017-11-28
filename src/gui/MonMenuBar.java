@@ -24,11 +24,11 @@ public class MonMenuBar extends JMenuBar {
     //Initialise le cadre clinique et appel la méthode d'initialisation.
     public MonMenuBar(CadreClinique cadreClinique) {
         this.cadreClinique = cadreClinique;
-        init();
+        this.initComponents();
     }
 
     //On créer le menu déroulant et ses compostantes avec les actionlisteners      
-    public void init() {
+    public void initComponents() {
         JMenu menuPrincipal = new JMenu("Gestion");
         
         //On créer un JMenuItem pour chaque options et on y ajoute
@@ -36,7 +36,8 @@ public class MonMenuBar extends JMenuBar {
         //le menu item au menu principal
         JMenuItem docteurItem = new JMenuItem("Docteur");
         docteurItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {    
                 cadreClinique.gererDocteur();
             }
         });
@@ -44,6 +45,7 @@ public class MonMenuBar extends JMenuBar {
         
         JMenuItem infirmierItem = new JMenuItem("Infirmier");
         infirmierItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 cadreClinique.gererInfirmier();
             }
@@ -52,6 +54,7 @@ public class MonMenuBar extends JMenuBar {
 
         JMenuItem patientItem = new JMenuItem("Patient");
         patientItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 cadreClinique.gererPatient();
             }
@@ -60,6 +63,7 @@ public class MonMenuBar extends JMenuBar {
 
         JMenuItem quitterItem = new JMenuItem("Quitter");
         quitterItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }

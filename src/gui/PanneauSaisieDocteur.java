@@ -21,7 +21,7 @@ public class PanneauSaisieDocteur extends PanneauSaisieParticipant {
 
     //Attributs
     //Liste Déroulante JScrollPane
-    private JScrollPane listeDeroulante;
+    private JScrollPane listeDeroulanteDocteur;
 
     //Liste pour l'Affichage
     private JList liste;
@@ -46,10 +46,10 @@ public class PanneauSaisieDocteur extends PanneauSaisieParticipant {
         liste = new JList<String>(listModel);
         liste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        listeDeroulante = new JScrollPane();
-        listeDeroulante.add(liste);
+        listeDeroulanteDocteur = new JScrollPane();
+        listeDeroulanteDocteur.add(liste);
 
-        this.add(listeDeroulante);
+        this.add(listeDeroulanteDocteur);
     }
 
     //Retourne le numérot de l'index sélectionner, donc le num de département

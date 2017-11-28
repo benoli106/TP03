@@ -61,10 +61,10 @@ public class CadreGestionParticipant extends JDialog {
         this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
         //On initialise les composantes;
-        this.init();
+        this.initComponents();
     }
 
-    public void init() {
+    public void initComponents() {
 
         //Création du tableau et de la liste à partir de la liste recue
         //En parametre
@@ -112,9 +112,7 @@ public class CadreGestionParticipant extends JDialog {
         // et on set la positio et dimension
         this.panneauPrincipal.add(listeDeroulante);
         this.panneauPrincipal.add(panneauBas, BorderLayout.PAGE_END);
-        this.panneauPrincipal.setBounds(this.position.x, this.position.y,
-                this.dimension.width, this.dimension.height);
-
+       
         if (listeParticipant.isEmpty()) {
 
             interfaceSaisie.setVisible(true);
@@ -129,6 +127,9 @@ public class CadreGestionParticipant extends JDialog {
 
         this.panneauPrincipal.setVisible(true);
 
+        UtilitaireSwing.setDimension(this, dimension);
+        this.setLocation(this.position.x, this.position.y);
+        this.setVisible(true);
     }
 
     public void passerModeAjout() {

@@ -4,8 +4,11 @@ import clinique.Identification;
 import clinique.Participant;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,6 +71,7 @@ public class PanneauSaisieParticipant extends JPanel
         this.add(panelNom);
         this.add(panelPrenom);
 
+        this.setVisible(true);
     }
 
     // Retourne un nouvel objet d'identification contenant le nom et prénom
