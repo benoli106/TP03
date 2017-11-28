@@ -36,7 +36,10 @@ public class CadreGestionParticipant extends JDialog {
     private Point position;
 
     /**
-     * � vous de commenter
+     * Recoie un objet clinique, interface de saisie, une liste de participant
+     * une position et une dimension. Initialise ses attributs avec ce qu'il
+     * recoit en parametre puis fait appel à la méthode qui initialise 
+     * les composantes.
      *
      * Interdit de modifier l'ent�te formel.
      */
