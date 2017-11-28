@@ -16,9 +16,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- * � vous de commenter
+ * Cadre de Gestion principal où on va y trouver une liste de participants.
+ * Affiche une liste dans l'interface de participants, déterminer par l'objet du
+ * menu qui sera cliquer dans le cadreClinique.
  *
- * @author
+ * @Long Tran & Benjamin Fontaine
  * @version
  *
  */

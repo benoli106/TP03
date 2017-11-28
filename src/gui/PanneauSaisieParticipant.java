@@ -72,7 +72,7 @@ public class PanneauSaisieParticipant extends JPanel
 
     // Retourne un nouvel objet d'identification contenant le nom et prénom
     // dans les textfields
-    public Identification getdentification() {
+    public Identification getIdentification() {
 
         // Va chercher la valeur du textfield dans le textfield du nom
         String nom = textFieldNom.getText();
@@ -86,7 +86,7 @@ public class PanneauSaisieParticipant extends JPanel
     @Override
     // Retourne un nouvel objet de participant contenant une identification
     public Participant getParticipant() {
-        return (new Participant(this.getdentification()));
+        return (new Participant(this.getIdentification()));
     }
 
     // Message erreur et retourne true lorsqu'une des 2 boites est vide sinon

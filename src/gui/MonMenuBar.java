@@ -62,6 +62,7 @@ public class MonMenuBar extends JMenuBar {
         });
         menuPrincipal.add(quitterItem);
         this.add(menuPrincipal);
+        
        
     }
 }
