@@ -29,7 +29,7 @@ public class CadreGestionParticipant extends JDialog {
     //Attributs
     private static final long serialVersionUID = 1L;
     private Clinique clinique;
-    private InterfacePanSaisieParticipant interfaceSaisie;
+    private PanneauSaisieParticipant interfaceSaisie;
     private List<Participant> listeParticipant;
     private JPanel panneauPrincipal;
     private Dimension dimension;
@@ -49,7 +49,7 @@ public class CadreGestionParticipant extends JDialog {
         //On initialise les attributs avec les valeurs recues
         //dans le constructeur
         this.clinique = clinique;
-        this.interfaceSaisie = panneauSaisie;
+        this.interfaceSaisie = (PanneauSaisieParticipant) panneauSaisie;
         this.listeParticipant = listeParticipant;
         this.position = position;
         this.dimension = dimCadre;
@@ -79,12 +79,12 @@ public class CadreGestionParticipant extends JDialog {
 
         //Création des boutons avec les actiosnlisteners
         JButton ajouter = new JButton("Ajouter");
-         ajouter.addActionListener(new ActionListener() {
+        ajouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 passerModeAjout();
             }
         });
-         
+
         JButton supprimer = new JButton("Supprimer");
         supprimer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -103,6 +103,8 @@ public class CadreGestionParticipant extends JDialog {
         //On initialise le panneauPrincipal;
         this.panneauPrincipal = (JPanel) this.getContentPane();
 
+        this.panneauPrincipal.add(this.interfaceSaisie);
+
         //On ajoute les composants finaux au JPanel principal et on le met visible,
         // et on set la positio et dimension
         this.panneauPrincipal.add(listeDeroulante);
@@ -110,15 +112,27 @@ public class CadreGestionParticipant extends JDialog {
         this.panneauPrincipal.setBounds(this.position.x, this.position.y,
                 this.dimension.width, this.dimension.height);
 
+        if (listeParticipant.isEmpty()) {
+
+            interfaceSaisie.setVisible(true);
+            listeDeroulante.setVisible(false);
+            
+        } else {
+
+            interfaceSaisie.setVisible(false);
+            listeDeroulante.setVisible(true);
+
+        }
+
         this.panneauPrincipal.setVisible(true);
 
     }
 
-    public void passerModeAjout(){
-        
+    public void passerModeAjout() {
+
     }
-    public void supprimerSelections(){
-        
+
+    public void supprimerSelections() {
+
     }
 }
-

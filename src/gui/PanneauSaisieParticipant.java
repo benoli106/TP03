@@ -45,11 +45,11 @@ public class PanneauSaisieParticipant extends JPanel
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         // Les saisies du nom
-        JLabel labelNom = new JLabel("Entrer le nom");
+        JLabel labelNom = new JLabel("Nom : ");
         textFieldNom = new JTextField();
 
         // Les saisies du prénom
-        JLabel labelPrenom = new JLabel("Entrer le prénom");
+        JLabel labelPrenom = new JLabel("Prénom : ");
         textFieldPrenom = new JTextField();
 
         // Ajouter le label & textfield du nom dans un panneau 
