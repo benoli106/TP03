@@ -1,9 +1,11 @@
 package gui;
 
 /**
- * ¿ vous de commenter
- * 
- * @author
+ * Le panneau pour la saisie des informations de l'infirmier
+ * et h√©rite de la classe
+ * PanneauSaisieParticipant.
+ *
+ * @Long Tran & Benjamin Fontaine
  * @version
  *
  */
@@ -12,10 +14,12 @@ public class PanneauSaisieInfirmier extends PanneauSaisieParticipant {
     private static final long serialVersionUID = 1L;
 
     /**
-     * ¿ vous de commenter
+     * Constructeur par d√©faut qui permet d'instancier les panneau et ses 
+     * components
      * 
      */
     public PanneauSaisieInfirmier() {
+        super();
 
     }
 }
