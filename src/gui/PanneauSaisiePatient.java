@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,6 +38,8 @@ public class PanneauSaisiePatient extends PanneauSaisieParticipant {
 
         // Instanciation du JTextField pour le NAS
         textFieldNAS = new JTextField();
+        textFieldNAS.setPreferredSize(new Dimension(200, 50));
+       
 
         // Déclaration & instaciation du NAS
         JLabel labelNAS = new JLabel("NAS : ");

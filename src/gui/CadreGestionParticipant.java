@@ -203,7 +203,7 @@ public class CadreGestionParticipant extends JDialog {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsNormal");
 
-        UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+
 
     }
 
@@ -263,6 +263,8 @@ public class CadreGestionParticipant extends JDialog {
 
                 //On rafraichit le cadre avec la nouvelle table/liste
                 UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+                
+                passerModeNormal();
             }
 
         }
