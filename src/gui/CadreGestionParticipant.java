@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -40,7 +41,7 @@ public class CadreGestionParticipant extends JDialog {
             boutonOk = new JButton("Ok");
             boutonOk.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    confirmerAjout();
+                    ajouterSiValide();
                 }
             });
 
@@ -71,6 +72,7 @@ public class CadreGestionParticipant extends JDialog {
     private JPanel cardsSupprimer;
     private JPanel cards;
     private JTable tableAfficher;
+    private JScrollPane listeDeroulante;
 
     /**
      * Recoie un objet clinique, interface de saisie, une liste de participant
@@ -107,7 +109,7 @@ public class CadreGestionParticipant extends JDialog {
         //En parametre
         tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(this.listeParticipant.toArray());
 
-        JScrollPane listeDeroulante = new JScrollPane();
+        listeDeroulante = new JScrollPane();
 
         listeDeroulante.add(tableAfficher);
 
@@ -167,7 +169,7 @@ public class CadreGestionParticipant extends JDialog {
             passerModeNormal();
 
         }
-        
+
         // ENLEVER ? LA FIN
         passerModeNormal();
 
@@ -186,7 +188,6 @@ public class CadreGestionParticipant extends JDialog {
     // entr?es de saisies.
     public void passerModeAjout() {
 
-      
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsAjouter");
 
@@ -201,7 +202,7 @@ public class CadreGestionParticipant extends JDialog {
 
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsNormal");
-        
+
         UtilitaireSwing.rafraichirCadre(panneauPrincipal);
 
     }
@@ -214,25 +215,56 @@ public class CadreGestionParticipant extends JDialog {
         int nbSelections = tableAfficher.getSelectedRowCount();
 
         for (int i = 0; i < nbSelections; i++) {
-            
-         // on enl?ve la ligne (le participant) du JTable 
-         ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);   
-         // on enl?ve les donn?es (le participant) du JTable
-         ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
+
+            // on enl?ve la ligne (le participant) du JTable 
+            ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);
+            // on enl?ve les donn?es (le participant) du JTable
+            ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
 
         }
-        
+
         // Si on a tout supprimer les participants, on passe au mode ajout
         if (tableAfficher.getRowCount() == 0) {
-            
-            passerModeAjout();           
-            
+
+            passerModeAjout();
+
+        } else {
+
+            UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+
         }
-         
-        else {
-            
-             UtilitaireSwing.rafraichirCadre(panneauPrincipal);
-            
+
+    }
+
+    // Permet d'ajouter un participant si les donn?es de saisies sont valides
+    public void ajouterSiValide() {
+
+        // Si les donn?es de saisie sont valides.
+        if (!interfaceSaisie.aviserDuneErreur()) {
+
+            // Si le participant existe d?j? , envoyer un message d'erreur
+            if (listeParticipant.contains(interfaceSaisie.getParticipant())) {
+
+                JOptionPane.showMessageDialog(this, "Le participant existe "
+                        + "d?j?");
+
+            } else {
+
+                listeParticipant.add(interfaceSaisie.getParticipant());
+                // On enleve la table du JScrollPane
+                this.listeDeroulante.remove(tableAfficher);
+
+        //On fait une nouvelle table ? partir de la nouvelle liste
+                //et on l'affiche
+                this.tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(
+                        listeParticipant.toArray());
+
+                this.listeDeroulante.setViewportView(tableAfficher);
+
+                //On rafraichit le cadre avec la nouvelle table/liste
+                UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+            }
+
         }
 
     }
