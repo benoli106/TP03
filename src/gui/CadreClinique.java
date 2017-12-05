@@ -69,7 +69,7 @@ public class CadreClinique extends JFrame implements Runnable {
     public CadreClinique() {
 
         try {
-
+            
             File fic = new File(Clinique.NOM_FIC);
 
             clinique
