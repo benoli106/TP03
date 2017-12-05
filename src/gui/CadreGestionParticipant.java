@@ -107,7 +107,7 @@ public class CadreGestionParticipant extends JDialog {
         //En parametre
         tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(this.listeParticipant.toArray());
 
-        JScrollPane listeDeroulante = new JScrollPane();
+        listeDeroulante = new JScrollPane();
 
         listeDeroulante.add(tableAfficher);
 
@@ -167,7 +167,7 @@ public class CadreGestionParticipant extends JDialog {
             passerModeNormal();
 
         }
-        
+
         // ENLEVER ? LA FIN
         passerModeNormal();
 
@@ -186,7 +186,6 @@ public class CadreGestionParticipant extends JDialog {
     // entr?es de saisies.
     public void passerModeAjout() {
 
-      
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsAjouter");
 
@@ -201,7 +200,7 @@ public class CadreGestionParticipant extends JDialog {
 
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsNormal");
-        
+
         UtilitaireSwing.rafraichirCadre(panneauPrincipal);
 
     }
@@ -214,27 +213,27 @@ public class CadreGestionParticipant extends JDialog {
         int nbSelections = tableAfficher.getSelectedRowCount();
 
         for (int i = 0; i < nbSelections; i++) {
-            
-         // on enl?ve la ligne (le participant) du JTable 
-         ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);   
-         // on enl?ve les donn?es (le participant) du JTable
-         ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
+
+            // on enl?ve la ligne (le participant) du JTable 
+            ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);
+            // on enl?ve les donn?es (le participant) du JTable
+            ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
 
         }
-        
+
         // Si on a tout supprimer les participants, on passe au mode ajout
         if (tableAfficher.getRowCount() == 0) {
-            
-            passerModeAjout();           
-            
-        }
-         
-        else {
-            
-             UtilitaireSwing.rafraichirCadre(panneauPrincipal);
-            
+
+            passerModeAjout();
+
+        } else {
+
+            UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+
         }
 
     }
+
+    
 
 }
