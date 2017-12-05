@@ -236,8 +236,5 @@ public class CadreGestionParticipant extends JDialog {
         }
 
     }
-    public void confirmerAjout(){
-        
-    }
 
 }
