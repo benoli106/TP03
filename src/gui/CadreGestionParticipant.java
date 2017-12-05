@@ -18,8 +18,8 @@ import javax.swing.JTable;
 
 /**
  * Cadre de Gestion principal où on va y trouver une liste de participants.
- * Affiche une liste dans l'interface de participants, déterminer par l'objet du
- * menu qui sera cliquer dans le cadreClinique.
+ * Affiche une liste dans l'interface de participants, déterminer par l'objet
+ * du menu qui sera cliquer dans le cadreClinique.
  *
  * @Long Tran & Benjamin Fontaine
  * @version
@@ -28,25 +28,25 @@ import javax.swing.JTable;
 public class CadreGestionParticipant extends JDialog {
 
     private class boutonsDeSaisie extends JPanel {
-        
+
         JButton boutonOk;
         JButton boutonAnnule;
-        public boutonsDeSaisie(){
+
+        public boutonsDeSaisie() {
             super();
-            
+
             this.setLayout(new FlowLayout());
-           boutonOk = new JButton("Ok");          
-            
-           boutonAnnule = new JButton("Annule");           
-            
+            boutonOk = new JButton("Ok");
+
+            boutonAnnule = new JButton("Annule");
+
             this.add(boutonOk);
             this.add(boutonAnnule);
-            
-      
+
         }
-    
+
     }
-   
+
     //Attributs
     private static final long serialVersionUID = 1L;
     private Clinique clinique;
@@ -59,11 +59,12 @@ public class CadreGestionParticipant extends JDialog {
     private JPanel cardsNormal;
     private JPanel cardsSupprimer;
     private JPanel cards;
+
     /**
      * Recoie un objet clinique, interface de saisie, une liste de participant
      * une position et une dimension. Initialise ses attributs avec ce qu'il
-     * recoit en parametre puis fait appel à la méthode qui initialise 
-     * les composantes.
+     * recoit en parametre puis fait appel à la méthode qui initialise les
+     * composantes.
      *
      * Interdit de modifier l'ent�te formel.
      */
@@ -97,7 +98,6 @@ public class CadreGestionParticipant extends JDialog {
         JScrollPane listeDeroulante = new JScrollPane();
 
         listeDeroulante.add(tableAfficher);
-      
 
         //Création du panneau de Gestion
         cardsNormal = new JPanel(new CardLayout());
@@ -116,28 +116,26 @@ public class CadreGestionParticipant extends JDialog {
                 supprimerSelections();
             }
         });
-        //On ajoute les boutons au panneau de gestion
-        cardsNormal.add(ajouter);
-        cardsNormal.add(supprimer);
+        //On ajoute les boutons dans un JPanel puis dans le CardLayout
+        JPanel panneauBoutonsGestion = new JPanel();
+        panneauBoutonsGestion.add(ajouter);
+        panneauBoutonsGestion.add(supprimer);
+
+        cardsNormal.add(panneauBoutonsGestion);
 
         //On cr?e le panneau de cards pour la menu ajouter avec la sous classe
         //priver boutonsDeSaisie
-        
-        cardsAjouter = (JPanel)new boutonsDeSaisie();
-        
+        cardsAjouter = (JPanel) new boutonsDeSaisie();
+
         //On cr?e le panneau de cards poue le menu supprimer
-        
         cardsSupprimer = new JPanel();
-        
+
         //On ajouter le panneau de gestion au panneau du bas et on y met un layout
         //de type cardLayout
         cards = new JPanel(new CardLayout());
-        cards.add(cardsNormal);
-        cards.add(cardsAjouter);
-        
-        //On montre le cardLayout normal par d?faut
-        
-        
+        cards.add(cardsNormal, "cardsNormal");
+        cards.add(cardsAjouter, "cardsAjouter");
+
         //On initialise le panneauPrincipal;
         this.panneauPrincipal = new JPanel();
         this.setContentPane(panneauPrincipal);
@@ -147,12 +145,12 @@ public class CadreGestionParticipant extends JDialog {
         //On ajoute les composants finaux au JPanel principal et on le met visible,
         // et on set la positio et dimension
         this.panneauPrincipal.add(listeDeroulante);
-       
+
         if (listeParticipant.isEmpty()) {
 
             interfaceSaisie.setVisible(true);
             listeDeroulante.setVisible(false);
-            
+
         } else {
 
             interfaceSaisie.setVisible(false);
@@ -160,8 +158,14 @@ public class CadreGestionParticipant extends JDialog {
 
         }
 
+        //on ajoute le panneau de cards en bas du panneau principal
+        panneauPrincipal.add(cards);
+
+        //On montre le cardLayout normal par d?faut
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        cl.show(cards, "cardsNormal");
+
         this.panneauPrincipal.setVisible(true);
-      
 
         UtilitaireSwing.setDimension(this, dimension);
         this.setLocation(this.position.x, this.position.y);
@@ -169,7 +173,7 @@ public class CadreGestionParticipant extends JDialog {
     }
 
     public void passerModeAjout() {
-      
+
     }
 
     public void supprimerSelections() {
