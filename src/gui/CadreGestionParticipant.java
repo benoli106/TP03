@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -107,14 +108,17 @@ public class CadreGestionParticipant extends JDialog {
 
         //Création du tableau et de la liste à partir de la liste recue
         //En parametre
+        DefaultTableModel tableModel = new DefaultTableModel();
+
         tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(this.listeParticipant.toArray());
+        tableAfficher.setModel(tableModel);
 
         listeDeroulante = new JScrollPane();
-
+  
         listeDeroulante.add(tableAfficher);
 
         listeDeroulante.setViewportView(tableAfficher);
-        
+
         //Création du panneau de Gestion
         cardsNormal = new JPanel(new CardLayout());
 
@@ -205,8 +209,6 @@ public class CadreGestionParticipant extends JDialog {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "cardsNormal");
 
-
-
     }
 
 // Proc?dure qui r?cup?re tous les indices de s?lections, boucle et 
@@ -218,8 +220,6 @@ public class CadreGestionParticipant extends JDialog {
 
         for (int i = 0; i < nbSelections; i++) {
 
-            // on enl?ve la ligne (le participant) du JTable 
-            ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);
             // on enl?ve les donn?es (le participant) du JTable
             ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
 
@@ -235,7 +235,7 @@ public class CadreGestionParticipant extends JDialog {
             UtilitaireSwing.rafraichirCadre(panneauPrincipal);
 
         }
-
+        
     }
 
     // Permet d'ajouter un participant si les donn?es de saisies sont valides
@@ -256,7 +256,7 @@ public class CadreGestionParticipant extends JDialog {
                 // On enleve la table du JScrollPane
                 this.listeDeroulante.remove(tableAfficher);
 
-        //On fait une nouvelle table ? partir de la nouvelle liste
+                //On fait une nouvelle table ? partir de la nouvelle liste
                 //et on l'affiche
                 this.tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(
                         listeParticipant.toArray());
@@ -265,14 +265,12 @@ public class CadreGestionParticipant extends JDialog {
 
                 //On rafraichit le cadre avec la nouvelle table/liste
                 UtilitaireSwing.rafraichirCadre(panneauPrincipal);
-                
+
                 passerModeNormal();
             }
 
         }
 
     }
-
-    
 
 }
