@@ -213,15 +213,21 @@ public class CadreGestionParticipant extends JDialog {
 
 // Proc?dure qui r?cup?re tous les indices de s?lections, boucle et 
     // supprime les participants du Jtable et des donn?es aussi.
+    
+    
     public void supprimerSelections() {
 
         // Le nombre de participants s?lectionn?s
-        int nbSelections = tableAfficher.getSelectedRowCount();
+        int[] selectedRows = tableAfficher.getSelectedRows();
 
-        for (int i = 0; i < nbSelections; i++) {
-
+        for (int i = selectedRows.length-1; i >= 0; i--) {
+            
+           
             // on enl?ve les donn?es (le participant) du JTable
-            ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
+            ((DefaultTableModel) tableAfficher.getModel())
+                    .getDataVector().remove(selectedRows[i]);
+            
+            listeParticipant.remove(selectedRows[i]);
 
         }
 
