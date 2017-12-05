@@ -43,12 +43,10 @@ public class PanneauSaisieDocteur extends PanneauSaisieParticipant {
             listModel.addElement(this.TAB_DEPT[i]);
         }
 
-        liste = new JList<String>(listModel);
+        liste = new JList(tableauDepartement);
         liste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        listeDeroulanteDocteur = new JScrollPane();
-        listeDeroulanteDocteur.add(liste);
-
+        listeDeroulanteDocteur = new JScrollPane(liste);
         this.add(listeDeroulanteDocteur);
     }
 

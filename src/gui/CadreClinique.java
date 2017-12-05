@@ -40,7 +40,7 @@ public class CadreClinique extends JFrame implements Runnable {
 
     // La taille du cadre pour la gestion des participants.
     public static final int LARGEUR_CADRE_GESTION = 600;
-    public static final int HAUTEUR_CADRE_GESTION = 700;
+    public static final int HAUTEUR_CADRE_GESTION = 850;
 
     // Le centre � partir de la taille du cadre.
     public final int CENTRE_X

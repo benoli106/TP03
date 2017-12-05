@@ -25,7 +25,6 @@ import utilitaire.UtilitaireFichier;
 public class debugMain {
     
         public static void main(String[] args) {
-
     	//Thread t = new Thread(new CadreClinique());
     	//t.start();
         
