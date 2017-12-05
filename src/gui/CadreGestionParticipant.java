@@ -37,8 +37,18 @@ public class CadreGestionParticipant extends JDialog {
 
             this.setLayout(new FlowLayout());
             boutonOk = new JButton("Ok");
+            boutonOk.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    confirmerAjout();
+                }
+            });
 
             boutonAnnule = new JButton("Annule");
+            boutonAnnule.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    passerModeNormal();
+                }
+            });
 
             this.add(boutonOk);
             this.add(boutonAnnule);
@@ -179,4 +189,5 @@ public class CadreGestionParticipant extends JDialog {
     public void supprimerSelections() {
 
     }
+    
 }
