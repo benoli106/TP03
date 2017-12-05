@@ -97,9 +97,7 @@ public class CadreGestionParticipant extends JDialog {
         JScrollPane listeDeroulante = new JScrollPane();
 
         listeDeroulante.add(tableAfficher);
-
-        //Création du panneau du bas avec les boutons
-       JPanel panneauBas = new JPanel(new CardLayout());
+      
 
         //Création du panneau de Gestion
         cardsNormal = new JPanel(new CardLayout());
@@ -127,12 +125,18 @@ public class CadreGestionParticipant extends JDialog {
         
         cardsAjouter = (JPanel)new boutonsDeSaisie();
         
+        //On cr?e le panneau de cards poue le menu supprimer
+        
+        cardsSupprimer = new JPanel();
         
         //On ajouter le panneau de gestion au panneau du bas et on y met un layout
         //de type cardLayout
-        cards.setLayout(new CardLayout());
+        cards = new JPanel(new CardLayout());
         cards.add(cardsNormal);
         cards.add(cardsAjouter);
+        
+        //On montre le cardLayout normal par d?faut
+        
         
         //On initialise le panneauPrincipal;
         this.panneauPrincipal = new JPanel();
@@ -155,11 +159,6 @@ public class CadreGestionParticipant extends JDialog {
             listeDeroulante.setVisible(true);
 
         }
-
-        
-        
-        
-                this.panneauPrincipal.add(panneauBas);
 
         this.panneauPrincipal.setVisible(true);
       
