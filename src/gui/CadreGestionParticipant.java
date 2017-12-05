@@ -15,6 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Cadre de Gestion principal où on va y trouver une liste de participants.
@@ -59,6 +60,7 @@ public class CadreGestionParticipant extends JDialog {
     private JPanel cardsNormal;
     private JPanel cardsSupprimer;
     private JPanel cards;
+    private JTable tableAfficher;
 
     /**
      * Recoie un objet clinique, interface de saisie, une liste de participant
@@ -93,7 +95,7 @@ public class CadreGestionParticipant extends JDialog {
 
         //Création du tableau et de la liste à partir de la liste recue
         //En parametre
-        JTable tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(this.listeParticipant.toArray());
+        tableAfficher = UtilitaireSwing.obtenirListe_A_Afficher(this.listeParticipant.toArray());
 
         JScrollPane listeDeroulante = new JScrollPane();
 
@@ -148,22 +150,19 @@ public class CadreGestionParticipant extends JDialog {
 
         if (listeParticipant.isEmpty()) {
 
-            interfaceSaisie.setVisible(true);
-            listeDeroulante.setVisible(false);
+            passerModeAjout();
 
         } else {
 
-            interfaceSaisie.setVisible(false);
-            listeDeroulante.setVisible(true);
+            passerModeNormal();
 
         }
+        
+        // ENLEVER ? LA FIN
+        passerModeNormal();
 
         //on ajoute le panneau de cards en bas du panneau principal
         panneauPrincipal.add(cards);
-
-        //On montre le cardLayout normal par d?faut
-        CardLayout cl = (CardLayout) (cards.getLayout());
-        cl.show(cards, "cardsNormal");
 
         this.panneauPrincipal.setVisible(true);
 
@@ -172,11 +171,60 @@ public class CadreGestionParticipant extends JDialog {
         this.setVisible(true);
     }
 
+    // Proc?dure qui permet de rendre invisible le panneau de la
+    // liste d?roulante des participants et rendre visible le panneau des 
+    // entr?es de saisies.
     public void passerModeAjout() {
 
+      
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        cl.show(cards, "cardsAjouter");
+
+        UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+
     }
 
+    // Proc?dure qui permet de rendre visible le panneau de la
+    // liste d?roulante des participants et rendre invisible le panneau des 
+    // entr?es de saisies.
+    public void passerModeNormal() {
+
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        cl.show(cards, "cardsNormal");
+        
+        UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+
+    }
+
+// Proc?dure qui r?cup?re tous les indices de s?lections, boucle et 
+    // supprime les participants du Jtable et des donn?es aussi.
     public void supprimerSelections() {
 
+        // Le nombre de participants s?lectionn?s
+        int nbSelections = tableAfficher.getSelectedRowCount();
+
+        for (int i = 0; i < nbSelections; i++) {
+            
+         // on enl?ve la ligne (le participant) du JTable 
+         ((DefaultTableModel) tableAfficher.getModel()).removeRow(i);   
+         // on enl?ve les donn?es (le participant) du JTable
+         ((DefaultTableModel) tableAfficher.getModel()).getDataVector().remove(i);
+
+        }
+        
+        // Si on a tout supprimer les participants, on passe au mode ajout
+        if (tableAfficher.getRowCount() == 0) {
+            
+            passerModeAjout();           
+            
+        }
+         
+        else {
+            
+             UtilitaireSwing.rafraichirCadre(panneauPrincipal);
+            
+        }
+
     }
+
 }
