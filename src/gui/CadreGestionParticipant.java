@@ -113,6 +113,8 @@ public class CadreGestionParticipant extends JDialog {
 
         listeDeroulante.add(tableAfficher);
 
+        listeDeroulante.setViewportView(tableAfficher);
+        
         //Création du panneau de Gestion
         cardsNormal = new JPanel(new CardLayout());
 
