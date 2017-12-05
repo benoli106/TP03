@@ -53,7 +53,7 @@ public class PanneauSaisieParticipant extends JPanel
         textFieldNom.setPreferredSize(new Dimension(200, 50));
 
         // Les saisies du prénom
-        JLabel labelPrenom = new JLabel("Prénom : ");
+        JLabel labelPrenom = new JLabel("Prenom : ");
         textFieldPrenom = new JTextField();
         textFieldPrenom.setPreferredSize(new Dimension(200, 50));
 

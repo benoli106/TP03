@@ -5,6 +5,7 @@ import clinique.Participant;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +27,26 @@ import javax.swing.JTable;
  */
 public class CadreGestionParticipant extends JDialog {
 
+    private class boutonsDeSaisie extends JPanel {
+        
+        JButton boutonOk;
+        JButton boutonAnnule;
+        public boutonsDeSaisie(){
+            super();
+            
+            this.setLayout(new FlowLayout());
+           boutonOk = new JButton("Ok");          
+            
+           boutonAnnule = new JButton("Annule");           
+            
+            this.add(boutonOk);
+            this.add(boutonAnnule);
+            
+      
+        }
+    
+    }
+   
     //Attributs
     private static final long serialVersionUID = 1L;
     private Clinique clinique;
@@ -34,7 +55,10 @@ public class CadreGestionParticipant extends JDialog {
     private JPanel panneauPrincipal;
     private Dimension dimension;
     private Point position;
-
+    private JPanel cardsAjouter;
+    private JPanel cardsNormal;
+    private JPanel cardsSupprimer;
+    private JPanel cards;
     /**
      * Recoie un objet clinique, interface de saisie, une liste de participant
      * une position et une dimension. Initialise ses attributs avec ce qu'il
@@ -75,10 +99,10 @@ public class CadreGestionParticipant extends JDialog {
         listeDeroulante.add(tableAfficher);
 
         //Création du panneau du bas avec les boutons
-        JPanel panneauBas = new JPanel();
+       JPanel panneauBas = new JPanel(new CardLayout());
 
         //Création du panneau de Gestion
-        JPanel panneauGestion = new JPanel();
+        cardsNormal = new JPanel(new CardLayout());
 
         //Création des boutons avec les actiosnlisteners
         JButton ajouter = new JButton("Ajouter");
@@ -95,14 +119,21 @@ public class CadreGestionParticipant extends JDialog {
             }
         });
         //On ajoute les boutons au panneau de gestion
-        panneauGestion.add(ajouter);
-        panneauGestion.add(supprimer);
+        cardsNormal.add(ajouter);
+        cardsNormal.add(supprimer);
 
+        //On cr?e le panneau de cards pour la menu ajouter avec la sous classe
+        //priver boutonsDeSaisie
+        
+        cardsAjouter = (JPanel)new boutonsDeSaisie();
+        
+        
         //On ajouter le panneau de gestion au panneau du bas et on y met un layout
         //de type cardLayout
-        panneauBas.add(panneauGestion);
-        panneauBas.setLayout(new CardLayout());
-
+        cards.setLayout(new CardLayout());
+        cards.add(cardsNormal);
+        cards.add(cardsAjouter);
+        
         //On initialise le panneauPrincipal;
         this.panneauPrincipal = new JPanel();
         this.setContentPane(panneauPrincipal);
@@ -112,7 +143,6 @@ public class CadreGestionParticipant extends JDialog {
         //On ajoute les composants finaux au JPanel principal et on le met visible,
         // et on set la positio et dimension
         this.panneauPrincipal.add(listeDeroulante);
-        this.panneauPrincipal.add(panneauBas, BorderLayout.PAGE_END);
        
         if (listeParticipant.isEmpty()) {
 
@@ -126,6 +156,11 @@ public class CadreGestionParticipant extends JDialog {
 
         }
 
+        
+        
+        
+                this.panneauPrincipal.add(panneauBas);
+
         this.panneauPrincipal.setVisible(true);
       
 
@@ -135,7 +170,7 @@ public class CadreGestionParticipant extends JDialog {
     }
 
     public void passerModeAjout() {
-
+      
     }
 
     public void supprimerSelections() {
